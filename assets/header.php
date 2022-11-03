@@ -37,7 +37,7 @@
                     <li id="firstlist">Home</li>
                     <li>Services</li>
                     <li>Work</li>
-                    <li id="show">About Us</li>
+                    <a href="javascript:pageScroll()"><li id="myButton" type="button" href='#footer'>About Us</li></a>
                     <li>Blogs</li>
                     <li>Contact</li>
                 </ul>
