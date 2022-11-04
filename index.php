@@ -17,18 +17,17 @@
 </body>
 
 <script>
-    $('#myButton')
-    .click(function() {
-    $('#footer').toggle('slow', function() {
-        // Animation complete.
-    });
+    
+    function showFooter(){
+        var x = document.getElementById("footer");
+        x.style.display = "block";
+        window.scrollTo(0, document.body.scrollHeight);
     }
-    );
 
-    function pageScroll() {
-    	window.scrollTo(0, document.body.scrollHeight);
-    	scrolldelay = setTimeout('pageScroll()',1); // scrolls every 100 milliseconds
-        break;
+    function hideFooter(){
+        var x = document.getElementById("footer");
+        x.style.display = "none";
+        window.scrollTo(0, 0);
     }
 </script>
 
