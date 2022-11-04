@@ -11,6 +11,7 @@
     <!-- import css -->
     <link rel="stylesheet" href="./css/styles.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
     <!-- website icon-->
     <link rel="icon" href="/img/BG.JPG" sizes="32x32" type="image/JPG">
@@ -34,12 +35,10 @@
 
             <div class="rightmenu">
                 <ul>
-                    <li id="firstlist">Home</li>
-                    <li>Services</li>
-                    <li>Work</li>
-                    <a href="javascript:pageScroll()"><li id="myButton" type="button" href='#footer'>About Us</li></a>
-                    <li>Blogs</li>
-                    <li>Contact</li>
+                    <li id="firstlist" href="./index.php">Home</li>
+                    <li>Quotes</li>
+                    <li>Portal</li>
+                    <li onclick="showFooter()">About Us</li>
                 </ul>
             </div>
 

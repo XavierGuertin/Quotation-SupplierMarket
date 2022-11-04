@@ -31,7 +31,8 @@
     float: right;
 }
 .rightmenu ul{
-    margin-left: 200px;
+    float: right;
+    margin-right: 100px;
 }
 .rightmenu ul li{
     display: inline-block;
