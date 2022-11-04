@@ -35,7 +35,7 @@
 
             <div class="rightmenu">
                 <ul>
-                    <li id="firstlist" href="./index.php">Home</li>
+                    <a href="./index.php"><li id="firstlist">Home</li></a>
                     <li>Quotes</li>
                     <li>Portal</li>
                     <li onclick="showFooter()">About Us</li>
