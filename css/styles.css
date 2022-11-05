@@ -1,3 +1,24 @@
+/*
+=============== 
+Variables
+===============
+*/
+:root {
+    /* colours */
+    --clr-1: #45634b;
+    --clr-2: #8ba888;
+    --clr-3: #c0cfb2;
+    --clr-4: #f1ebe1;
+    --clr-5: #FFFFFF;
+    --clr-6: #dfd7cc;
+    /* box */
+    --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+    --border: .2rem solid rgba(0, 0, 0, .1);
+    --outline: .1rem solid rgba(0, 0, 0, .1);
+    --outline-hover: .2rem solid #130f40;
+    --transition: 0.3s ease;
+  }
+
 *{
     margin: 0px;
     padding: 0px;
@@ -19,6 +40,7 @@
     float: left;
 }
 .leftmenu h4{
+    margin-top: 7.5%;
     padding-left: 70px;
     font-weight: bold;
     color: white;
@@ -87,6 +109,8 @@
     margin-top: 25px;
     border: 3px solid white;
     cursor: pointer;
+    display:inline-block;
+    margin-right: 5px;
 }
 .btn:hover{
     background-color: white;
@@ -99,7 +123,7 @@ Footer
 ===============
 */
 footer{
-    background: #000000;
+    background: #2e302e;
   }
   .copyright{
     font-size: 1rem;
@@ -132,4 +156,92 @@ footer{
   }
   .team a:hover{
     text-decoration: underline;
+  }
+
+  /*
+  ====== Log In Page =====
+  */
+section {
+    padding: 2rem 5%;
+}
+.section-title{
+    font-size: 2.25rem;
+    text-align: center;
+    padding-bottom: 2rem;
+}
+.section-title span {
+    background: var(--clr-1);
+    padding: .5rem 3rem;
+    display: inline-block;
+    clip-path: polygon(10% 10%, 90% 10%, 90% 80%, 50% 100%, 10% 80%);
+    color: var(--clr-4);
+}
+.login-container {
+
+    display: block;
+    background-color: #f1f1f1;opacity: 70%;
+    max-width: 420px;
+    margin: 0 auto;
+    margin-top: 5%;
+    margin-bottom: 10%;
+    padding-left: 66px;
+    padding-right: 66px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    font-size: small;
+    border-radius: 1rem;
+    border: .3rem solid #268a47;
+    width: auto;
+  
+  }
+  
+  .login-container a {
+    color: #043d1c;
+  }
+  
+  .login-container input {
+  
+    width: 300px;
+    font-size: medium;
+    height: auto;
+    padding: 5px;
+    line-height: 1.5;
+    margin-bottom: 5px;
+  
+  }
+  
+  .login-btn {
+    margin-top: 1rem;
+    display: inline-block;
+    padding: .8rem 3rem;
+    border-radius: .5rem;
+    border: .2rem solid var(--clr-1);
+    color: var(--clr-1);
+    font-size: 1.5rem;
+    cursor: pointer;
+    font-size: large;
+    margin-left: 29%;
+    cursor: pointer;
+  }
+  
+  .login-btn:hover {
+    background: var(--clr-1);
+    color: var(--clr-4);
+    transition: var(--transition);
+  }
+
+  @media (max-width: 600px) {
+
+    .login-container {
+      padding-left: 66px;
+      padding-right: 66px;
+      max-width: 333px;
+    }
+  
+    .login-container input {
+  
+      width: 200px;
+      font-size: small;
+    }
+  
   }

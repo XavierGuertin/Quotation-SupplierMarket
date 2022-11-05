@@ -1,4 +1,9 @@
-<?php session_start(); ?>
+<?php 
+if (session_status() === PHP_SESSION_NONE) 
+{
+    session_start();
+}
+?>
 <!DocTYPE html>
 <html lang="en">
 
@@ -9,9 +14,18 @@
     <title>Quote Market</title>
 
     <!-- import css -->
-    <link rel="stylesheet" href="./css/styles.css">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script type="text/Javascript" src="js/validation.js"></script>
+    <script type="text/Javascript" src="js/login.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    
 
     <!-- website icon-->
     <link rel="icon" href="/img/BG.JPG" sizes="32x32" type="image/JPG">
@@ -22,6 +36,7 @@
             $('#footer').load("./assets/footer.php");
         });
     </script>
+    <script src="js/script.js"></script>
 
 </head>
 
@@ -36,8 +51,15 @@
             <div class="rightmenu">
                 <ul>
                     <a href="./index.php"><li id="firstlist">Home</li></a>
-                    <li>Quotes</li>
-                    <li>Portal</li>
+                    <?php
+                    if(isset($_SESSION['userName'])) {
+                        $role = $_SESSION['role'];
+                        if($role=="User" || $role=="Supervisor")
+                            echo '<a href="./userPortal.php"><li>Portal</li></a>';
+                        if($role=="Supplier")
+                            echo '<a href="./supplierPortal.php"><li>Portal</li></a>';
+                    }
+                    ?>
                     <li onclick="showFooter()">About Us</li>
                 </ul>
             </div>
@@ -51,7 +73,7 @@
             <br>
             <a href="https://alzheimer.ca/sites/default/files/documents/alzheimers-disease_getting-a-diagnosis_0.pdf" target="_blank">forgot your password?</a>
 
-            <a href="./p6_signup.php">Create An Account</a>
-            <a href="./p5_login.php" class="btn"> Login Now </a>
+            <a href="./signup.php">Create An Account</a>
+            <a href="./login.php" class="btn"> Login Now </a>
         </form-->
     <!--END OF HEADER-->
