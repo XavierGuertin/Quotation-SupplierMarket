@@ -28,7 +28,7 @@ if (session_status() === PHP_SESSION_NONE)
     
 
     <!-- website icon-->
-    <link rel="icon" href="/img/BG.JPG" sizes="32x32" type="image/JPG">
+    <link rel="icon" href="./img/BG.JPG" sizes="32x32" type="image/JPG">
 
     <script src="https://code.jquery.com/jquery-3.3.1.js" integity="sha256-2Kok7Mb0yxpgUVvAk/H32jig0SYS2auk4Pfzbm7uH60=" crossorigin "anonymous"></script>
     <script>
