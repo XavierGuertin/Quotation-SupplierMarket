@@ -6,6 +6,7 @@ if (session_status() === PHP_SESSION_NONE)
 ?>
 
         <div class="text">
+            <a onclick="hideFooter()" title="Hide Footer"><i class='far fa-arrow-alt-circle-up' style='font-size:30px;color:white'></i></a>
             <h4> Submit & Manage Quotes</h4>
             <h1> Quotation Manager </h1>
             <h3> From a user's perspective to a supplier's</h3>
