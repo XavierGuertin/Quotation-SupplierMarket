@@ -38,11 +38,11 @@
                     else {
                     echo '
                         <div class="textbox">
-                            <i class="fa fa-user-circle-o" style="margin-bottom:5px;font-size:18px;" aria-hidden="true"></i>
+                            <i class="fa-solid fa-circle-user" style="margin-bottom:5px;font-size:20px;" aria-hidden="true"></i>
                             <input style="text-transform:none" class="form-control" type="text" id="loginEmail" name="email" placeholder="Email or Username" onmouseover="this.focus();">
                         </div>
                         <div class="textbox">
-                            <i class="fa fa-lock" style="margin-bottom:5px;font-size:18px;" aria-hidden="true"></i>
+                            <i class="fa-solid fa-lock" style="margin-bottom:5px;font-size:18px;" aria-hidden="true"></i>
                             <input style="text-transform:none" class="form-control" type="password" id="loginPass" name="pwd" placeholder="Password" onmouseover="this.focus();"></br>
                         </div>
                         <div class="form-check" style="margin-left:10%;">

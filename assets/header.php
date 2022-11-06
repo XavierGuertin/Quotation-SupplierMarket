@@ -14,17 +14,17 @@ if (session_status() === PHP_SESSION_NONE)
     <title>Quote Market</title>
 
     <!-- import css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+
+    <!-- import js -->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script type="text/Javascript" src="js/validation.js"></script>
     <script type="text/Javascript" src="js/login.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-    <link rel="stylesheet" href="./css/styles.css">
+    <script src="https://kit.fontawesome.com/be2443f621.js" crossorigin="anonymous"></script>
     
 
     <!-- website icon-->
@@ -45,7 +45,7 @@ if (session_status() === PHP_SESSION_NONE)
         <div class="menu">
 
             <div class="leftmenu">
-                <a style="text-decoration:none;" href="./index.php"><h4><i class='bx bx-hive'></i>  Quotation & Supplier Market </h4></a>
+                <a style="text-decoration:none;" href="./index.php"><h4><i class='fa-brands fa-think-peaks fa-beat' style="--fa-animation-duration: 2s;"></i>  Quotation & Supplier Market </h4></a>
             </div>
 
             <div class="rightmenu">

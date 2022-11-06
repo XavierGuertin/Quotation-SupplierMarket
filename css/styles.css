@@ -5,12 +5,8 @@ Variables
 */
 :root {
     /* colours */
-    --clr-1: #45634b;
-    --clr-2: #8ba888;
-    --clr-3: #c0cfb2;
-    --clr-4: #f1ebe1;
-    --clr-5: #FFFFFF;
-    --clr-6: #dfd7cc;
+    --clr-1: #434343;
+    --clr-2: #f1ebe1;
     /* box */
     --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
     --border: .2rem solid rgba(0, 0, 0, .1);
@@ -174,7 +170,7 @@ section {
     padding: .5rem 3rem;
     display: inline-block;
     clip-path: polygon(10% 10%, 90% 10%, 90% 80%, 50% 100%, 10% 80%);
-    color: var(--clr-4);
+    color: var(--clr-2);
 }
 .login-container {
 
@@ -190,7 +186,7 @@ section {
     padding-top: 20px;
     font-size: small;
     border-radius: 1rem;
-    border: .3rem solid #268a47;
+    border: .3rem solid #550c0c;
     width: auto;
   
   }
@@ -226,7 +222,7 @@ section {
   
   .login-btn:hover {
     background: var(--clr-1);
-    color: var(--clr-4);
+    color: var(--clr-2);
     transition: var(--transition);
   }
 
