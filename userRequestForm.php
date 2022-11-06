@@ -5,7 +5,7 @@
 </style>
 
 <body>
-    <div align = "center";>
+    <div style="align-items:center;";>
 		<form class = ".form-center"> 
         	<label><h1> New Quotation Request </h1></label>
             	</br>
