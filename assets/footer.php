@@ -1,4 +1,6 @@
 <footer>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    
     <div class="footer">
         
         <a onclick="hideFooter()" title="Hide Footer"><i class='far fa-arrow-alt-circle-up' style='font-size:30px;color:white'></i></a>
