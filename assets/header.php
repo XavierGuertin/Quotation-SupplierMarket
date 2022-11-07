@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE)
     session_start();
 }
 ?>
-<!DocTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -13,9 +13,10 @@ if (session_status() === PHP_SESSION_NONE)
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quote Market</title>
 
-    <!-- import css -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/styles.css">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap" rel="stylesheet">
 
     <!-- import js -->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -31,7 +32,12 @@ if (session_status() === PHP_SESSION_NONE)
             $('#footer').load("./assets/footer.php");
         });
     </script>
-    
+
+    <!-- import css -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/styles.css">
 
     <!-- website icon-->
     <link rel="icon" href="./img/BG.JPG" sizes="32x32" type="image/JPG">
@@ -61,7 +67,7 @@ if (session_status() === PHP_SESSION_NONE)
                     <li onclick="showFooter()">About Us</li>
                     <?php
                     if(isset($_SESSION['userName'])) {
-                        echo '<form style="display: inline-block;" action="./assets/php/logoutPhp.php" method="post"><li>log out</li></form>';
+                        echo '<form id="logOutHeader" style="display: inline-block;" action="./assets/php/logoutPhp.php" method="post"><li onclick="logOutHeader.submit();">log out</li></form>';
                     }
                     ?>
                 </ul>

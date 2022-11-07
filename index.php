@@ -15,15 +15,15 @@ if (session_status() === PHP_SESSION_NONE)
             $name = $_SESSION['userName'];
             $role = $_SESSION['role'];
             echo '<div class="alert alert-secondary" role="alert" style=" width:15%;margin: auto;">Welcome ',$name,'<br>Role: ',$role,'<br>You are logged in!</div>
-            <form style="display: inline-block;" action="./assets/php/logoutPhp.php" method="post"><button name="log out" class="btn"> Log out</button></form>';
+            <form style="display: inline-block;" action="./assets/php/logoutPhp.php" method="post"><button name="log out" class="loginBtn"> Log out</button></form>';
                 if($role=="User" || $role=="Supervisor")
-                    echo '<button name="Portal" class="btn" onclick="location.href=\'userPortal.php\'"> Portal</button>';
+                    echo '<button name="Portal" class="loginBtn" onclick="location.href=\'userPortal.php\'"> Portal</button>';
                 if($role=="Supplier")
-                    echo '<button name="Portal" class="btn" onclick="location.href=\'supplierPortal.php\'"> Portal</button>';
+                    echo '<button name="Portal" class="loginBtn" onclick="location.href=\'supplierPortal.php\'"> Portal</button>';
             }
             else {
             echo '<div class="alert alert-secondary" role="alert" style=" width:15%;margin: auto;">You are logged out.</div>
-            <button name="log in" class="btn" onclick="location.href=\'login.php\'"> Log in</button>';
+            <button name="log in" class="loginBtn" onclick="location.href=\'login.php\'"> Log in</button>';
             }
             ?> 
         </div>

@@ -39,7 +39,7 @@
                     echo '
                         <div class="textbox">
                             <i class="fa-solid fa-circle-user" style="margin-bottom:5px;font-size:20px;" aria-hidden="true"></i>
-                            <input style="text-transform:none" class="form-control" type="text" id="loginEmail" name="email" placeholder="Email or Username" onmouseover="this.focus();">
+                            <input style="text-transform:none" class="form-control" id="loginEmail" name="email" placeholder="Email or Username" onmouseover="this.focus();">
                         </div>
                         <div class="textbox">
                             <i class="fa-solid fa-lock" style="margin-bottom:5px;font-size:18px;" aria-hidden="true"></i>
