@@ -20,8 +20,8 @@ function emptyLogin(){
     var emptyP = document.getElementById("loginPass");
 
     if(emptyE.value == "" || emptyP.value == ""){
-        if(emptyE == ""){
-            alert("Email or username missing.");
+        if(emptyE.value == ""){
+            alert("Email missing.");
             emptyE.focus();
             emptyE.select();
         }
@@ -29,6 +29,28 @@ function emptyLogin(){
             alert("Password missing.");
             emptyP.focus();
             emptyP.select();
+        }
+        return false;
+    }
+    else
+        return true;
+}
+
+//email empty validation
+function emptyForm(){
+    var emptyS = document.getElementById("subject-input");
+    var emptyD = document.getElementById("descriptionBox");
+
+    if(emptyS.value == "" || emptyD.value == ""){
+        if(emptyS.value == ""){
+            alert("subject is missing");
+            emptyS.focus();
+            emptyS.select();
+        }
+        else {
+            alert("description is missing");
+            emptyD.focus();
+            emptyD.select();
         }
         return false;
     }
