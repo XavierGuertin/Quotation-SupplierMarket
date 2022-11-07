@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE)
 }
 ?>
 
-        <div class="text">
+        <div class="text" style="margin-top:70px;">
             <h4> Submit & Manage Quotes</h4>
             <h1> Quotation Manager </h1>
             <h3> From a user's perspective to a supplier's</h3>
