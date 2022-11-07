@@ -65,7 +65,7 @@
                             else {
                                 while($row = mysqli_fetch_assoc($pendingResults)){
                             ?>
-                                    <div class="job-item p-4 mb-4">
+                                    <div class="reqList p-4 mb-4">
                                         <div class="row g-4">
                                             <div class="col-sm-12 col-md-8 d-flex align-items-center" style="margin-top:-55px;">
                                                 <div class="text-start ps-4" style="margin-top:45px;">
@@ -93,7 +93,7 @@
                             else {
                                 while($row = mysqli_fetch_assoc($approvalResults)){
                             ?>
-                                    <div class="job-item p-4 mb-4">
+                                    <div class="reqList p-4 mb-4">
                                         <div class="row g-4">
                                             <div class="col-sm-12 col-md-8 d-flex align-items-center" style="margin-top:15px;">
                                                 <div class="text-start ps-4">
@@ -121,7 +121,7 @@
                             else {
                                 while($row = mysqli_fetch_assoc($completedResults)){
                             ?>
-                                    <div class="job-item p-4 mb-4">
+                                    <div class="reqList p-4 mb-4">
                                         <div class="row g-4">
                                             <div class="col-sm-12 col-md-8 d-flex align-items-center" style="margin-top:15px;">
                                                 <div class="text-start ps-4">

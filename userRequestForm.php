@@ -1,50 +1,39 @@
-<?php include('./assets/header.php'); ?>
+<?php include('./assets/header.php'); 
 
-<style>
-	div{color: white;}
-</style>
-
-<body>
-    <div style="align-items:center;";>
-		<form class = ".form-center"> 
-        	<label><h1> New Quotation Request </h1></label>
-            	</br>
-
-			<label> Subject </label>
-			</br>
-				<input onchange = "isSubjectValid()" type ="text" name = "item" id="subject-input" value = "" placeholder = "" >
-			</br>
-
-			<label for="descriptionBox"> Description </label>
+    if(isset($_SESSION['userId']))
+    {
+        if (!($role == "User" or $role == "Supervisor"))
+        {
+            header("Location: ./index.php");
+            alert("You do not have permission to go on this page.");
+            exit();
+        }
+    }
+    else
+    {
+        header("Location: ./index.php");
+        alert("You do not have permission to go on this page.");
+        exit();
+    }
+?>
+		<div id="formDiv" style="color: white;text-align:center;">
+			<form class = "form-center"> 
+				<h1> New Quotation Request </h1>
 				</br>
-				<textarea id="descriptionBox" name="descriptionBox" rows="10" cols="75">
-				</textarea>
 
+				<a> Subject </a>
 				</br>
+				<input type ="text" class="inputRequest" name="item" id="subject-input" placeholder="Subject Title" ></input>
 				</br>
-				<input onclick="" type ="submit" name="add" value = "Submit" class = "submit-button";></input>
-		</form>	
-	</div>        
-</body>
 
-<Script> 
-console.log("Injected");
-
-//function to check if the user entered a correct subject
-function isSubjectValid()
-{
-console.log("ABCD");
-var itemNameRegex = /^[a-zA-Z]+$/;
-	if(itemNameRegex.test(document.getElementById("subject-input").value) == true)
-	{
-		return true; 
-	}
-	else
-	{
-		alert("Please enter a subject correctly!");
-	}
-}
-</script>
+				<a> Description </a>
+				</br>
+				<textarea class="inputRequest" style="max-height:300px" id="descriptionBox" name="descriptionBox" rows="10" cols="75" placeholder="Description of request"></textarea>
+				</br></br>
+				<input onclick="" type ="submit" name="add" value="Submit" class="submit-button"></input>
+			</form>	
+		</div>
+</div>
 
 <!---- Footer --->
 <div id="footer" style="display:none;"></div>

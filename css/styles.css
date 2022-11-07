@@ -248,40 +248,47 @@ User form
 ===============
 */
 
-.form-center {
-    /*display:flex;
-    justify-content: center;*/
+#formDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#formDiv .form-center {
+    display: block;
+    justify-content: center;
+    align-items: center;
     font-family: sans-serif;
     font-size: 17px;
     color: white; 
     padding:5px 5px;
   }
 
-  input[type=text] {
-    font-family: sans-serif;
-    width: 35%;
-    font-size: 12px;
-    padding: 5px 5px;
-    margin: 8px 0;
-    border: 1px solid #aaa;
-  }
-  
-  .submit-button{
-    font-family: sans-serif;
-    font-size: 15px;
-    color: white;
-    background-color: #483D8B;
-    padding: 12px 10px;
-    margin: 5px 0;
-    margin-bottom: 200px;
-    border: 1px solid;
-    cursor: pointer;
-    width: 35%;
-  }
-  
-  .submit-button:hover{
-    background-color:DarkBlue;
-  }
+.inputRequest {
+  font-family: sans-serif;
+  width: 700px;
+  height: 150%;
+  font-size: 12px;
+  padding: 5px 5px;
+  margin: 8px 0;
+  border: 3px solid rgb(3, 3, 3);
+}
+
+.submit-button{
+  font-family: sans-serif;
+  font-size: 15px;
+  color: white;
+  background-color: #34268f;
+  padding: 12px 10px;
+  margin: 5px 0;
+  margin-bottom: 200px;
+  border: 2px solid black;
+  cursor: pointer;
+  width: 35%;
+}
+
+.submit-button:hover{
+  background-color:DarkBlue;
+}
 
 
   
@@ -302,12 +309,12 @@ User form
   color: #FFFFFF;
 }
 
-/*** Job Listing ***/
+/*** Request Listing ***/
 .nav-pills .nav-item .active {
   border-bottom: 2px solid #4d32ff;
 }
 
-.job-item {
+.reqList {
   border: 1px solid transparent;
   background-color: #ffffff;
   border-radius: 20px;
@@ -318,7 +325,7 @@ User form
   
 }
 
-.job-item:hover {
+.reqList:hover {
   border-color: rgba(0, 0, 0, .08);
   box-shadow: none;
 }
