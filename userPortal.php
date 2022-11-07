@@ -69,12 +69,12 @@
                                         <div class="row g-4">
                                             <div class="col-sm-12 col-md-8 d-flex align-items-center" style="margin-top:-55px;">
                                                 <div class="text-start ps-4" style="margin-top:45px;">
-                                                    <h5 class="mb-3"><?php echo $row["title"];?></h5>
+                                                    <h5 class="mb-3"><?php echo $row["subject"];?></h5>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center" style="margin-top:-37px;">
                                                 <a class="btn btn-primary" href="">Details</a>
-                                                <small class="text-truncate" style="margin-top:-30px;margin-right:75%;"><i class="far fa-calendar-alt text-primary me-2"></i>   Date Created: <?php echo $row["created_at"];?></small>
+                                                <small class="text-truncate" style="margin-top:-30px;margin-right:35%;"><i class="far fa-calendar-alt text-primary me-2"></i>   Date Created: <?php echo $row["created_at"];?></small>
                                             </div>
                                         </div>
                                     </div>
@@ -97,12 +97,12 @@
                                         <div class="row g-4">
                                             <div class="col-sm-12 col-md-8 d-flex align-items-center" style="margin-top:15px;">
                                                 <div class="text-start ps-4">
-                                                    <h5 class="mb-3"><?php echo $row["title"];?></h5>
+                                                    <h5 class="mb-3"><?php echo $row["subject"];?></h5>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center" style="margin-top:-35px;">
                                                 <a class="btn btn-primary" href="">Details</a>
-                                                <small class="text-truncate" style="margin-top:-30px;margin-right:75%;"><i class="far fa-calendar-alt text-primary me-2"></i>Date Created: <?php echo $row["created_at"];?></small>
+                                                <small class="text-truncate" style="margin-top:-30px;margin-right:35%;"><i class="far fa-calendar-alt text-primary me-2"></i>Date Created: <?php echo $row["created_at"];?></small>
                                             </div>
                                         </div>
                                     </div>
@@ -125,12 +125,12 @@
                                         <div class="row g-4">
                                             <div class="col-sm-12 col-md-8 d-flex align-items-center" style="margin-top:15px;">
                                                 <div class="text-start ps-4">
-                                                    <h5 class="mb-3"><?php echo $row["title"];?></h5>
+                                                    <h5 class="mb-3"><?php echo $row["subject"];?></h5>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center" style="margin-top:-35px;">
                                                 <a class="btn btn-primary" href="">Details</a>
-                                                <small class="text-truncate" style="margin-top:-30px;margin-right:75%;"><i class="far fa-calendar-alt text-primary me-2"></i>Date Created: <?php echo $row["created_at"];?></small>
+                                                <small class="text-truncate" style="margin-top:-30px;margin-right:35%;"><i class="far fa-calendar-alt text-primary me-2"></i>Date Created: <?php echo $row["created_at"];?></small>
                                             </div>
                                         </div>
                                     </div>
