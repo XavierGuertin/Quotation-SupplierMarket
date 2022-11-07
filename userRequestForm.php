@@ -15,20 +15,24 @@
         alert("You do not have permission to go on this page.");
         exit();
     }
+
+	if(isset($_POST['add'])){
+		
+	}
 ?>
-		<div id="formDiv" style="color: white;text-align:center;">
-			<form class = "form-center"> 
+		<div id="formDiv">
+			<form class = "form-center" action="" method="post"> 
 				<h1> New Quotation Request </h1>
 				</br>
 
-				<a> Subject </a>
+				<a for="subjectTitle"> Subject </a>
 				</br>
-				<input type ="text" class="inputRequest" name="item" id="subject-input" placeholder="Subject Title" ></input>
+				<input type ="text" class="inputRequest" name="subject" id="subject-input" placeholder="Subject Title" ></input>
 				</br>
 
-				<a> Description </a>
+				<a for="description"> Description </a>
 				</br>
-				<textarea class="inputRequest" style="max-height:300px" id="descriptionBox" name="descriptionBox" rows="10" cols="75" placeholder="Description of request"></textarea>
+				<textarea class="inputRequest" id="descriptionBox" name="descriptionBox" rows="10" cols="75" placeholder="Description of request"></textarea>
 				</br></br>
 				<input onclick="" type ="submit" name="add" value="Submit" class="submit-button"></input>
 			</form>	

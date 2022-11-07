@@ -249,10 +249,11 @@ User form
 */
 
 #formDiv {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  color: white;
+  text-align:center;
+  margin-top: 25px;
 }
+
 #formDiv .form-center {
     display: block;
     justify-content: center;
@@ -271,6 +272,7 @@ User form
   padding: 5px 5px;
   margin: 8px 0;
   border: 3px solid rgb(3, 3, 3);
+  max-height:275px;
 }
 
 .submit-button{
@@ -280,7 +282,6 @@ User form
   background-color: #34268f;
   padding: 12px 10px;
   margin: 5px 0;
-  margin-bottom: 200px;
   border: 2px solid black;
   cursor: pointer;
   width: 35%;
