@@ -58,9 +58,10 @@ if (session_status() === PHP_SESSION_NONE)
                     <?php
                     if(isset($_SESSION['userName'])) {
                         $role = $_SESSION['role'];
-                        if($role=="User" || $role=="Supervisor")
+                        if($role=="User" || $role=="Supervisor") {
                             echo '<a href="./userRequestForm.php"><li>Request Form</li></a>';
                             echo '<a href="./userPortal.php"><li>Portal</li></a>';
+                        }
                         if($role=="Supplier")
                             echo '<a href="./supplierPortal.php"><li>Portal</li></a>';
                     }
