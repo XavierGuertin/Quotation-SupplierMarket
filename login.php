@@ -43,13 +43,13 @@
                         </div>
                         <div class="textbox">
                             <i class="fa-solid fa-lock" style="margin-bottom:5px;font-size:18px;" aria-hidden="true"></i>
-                            <input style="text-transform:none" class="form-control" type="password" id="loginPass" name="pwd" placeholder="Password" onmouseover="this.focus();"></br>
+                            <input style="text-transform:none;" class="form-control" type="password" id="loginPass" name="pwd" placeholder="Password" onmouseover="this.focus();"></br>
                         </div>
-                        <div class="form-check" style="margin-left:10%;">
+                        <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="remember" name="remember">
-                            <label class="form-check-label" for="remember" style="margin-left:35px;">Remember Me</label>
+                            <label class="form-check-label" for="remember" style="margin-left:10px; font-size:15px;">Remember Me</label>
                         </div>
-                        <div style="margin-left:-10%; padding-bottom:5px;">
+                        <div style="padding-bottom:5px;">
                             <button href="./index.php" class="login-btn" type="submit" name="login-submit" onclick="emptyLogin();">Log in</button>
                         </div>
                         <br>

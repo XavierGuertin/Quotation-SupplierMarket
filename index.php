@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE)
 }
 ?>
 
-        <div class="text" style="margin-top:70px;">
+        <div class="text" style="margin-top:10%;">
             <h4> Submit & Manage Quotes</h4>
             <h1> Quotation Manager </h1>
             <h3> From a user's perspective to a supplier's</h3>
@@ -22,7 +22,7 @@ if (session_status() === PHP_SESSION_NONE)
                     echo '<button name="Portal" class="loginBtn" onclick="location.href=\'supplierPortal.php\'"> Portal</button>';
             }
             else {
-            echo '<div class="alert alert-secondary" role="alert" style=" width:15%;margin: auto;">You are logged out.</div>
+            echo '<div class="alert alert-secondary" role="alert" style="width:35%;margin:auto;margin-top:20px;font-size:small;">You are logged out.</div>
             <button name="log in" class="loginBtn" onclick="location.href=\'login.php\'"> Log in</button>';
             }
             ?> 
