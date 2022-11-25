@@ -45,7 +45,7 @@ Variables
   padding-left: 10%;
   font-weight: bold;
   color: white;
-  font-size: 200%;
+  font-size: 150%;
   font-family: 'montserrat', sans-serif;
   
 }
@@ -65,7 +65,7 @@ Variables
   display: inline-block;
   font-family: 'montserrat', sans-serif ;
   list-style: none;
-  font-size: 150%;
+  font-size: 100%;
   color: white;
   font-weight: bold;
   line-height: 100px;
@@ -201,12 +201,13 @@ Responsive Rules
 }
 .leftmenu h4{
   padding: 25px 20px;
-  font-size: 35px;
+  font-size: 20px;
+  margin-top: -15px;
 }
 
 .rightmenu ul li{
   font-size: 20px;
-  margin-top: 15px;
+  margin-top: 10px;
   margin-left: 20px;
 }
 }
@@ -216,12 +217,13 @@ Responsive Rules
   background-size: 2500px;
 }
 .leftmenu h4{
-  font-size: 30px;
+  font-size: 25px;
+  margin-top: -15px;
 }
 
 .rightmenu ul li{
-  font-size: 25px;
-  margin-top: 25px;
+  font-size: 17.5px;
+  margin-top: 5px;
 }
 }
 
