@@ -71,7 +71,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center" style="margin-top:-37px;">
-                                                <a class="btn btn-primary" href="">Details</a>
+                                                <a class="btn btn-primary" href="./viewDetails.php?requestId=<?php echo $row["id"];?>">Details</a>
                                                 <small class="text-truncate" style="margin-top:-30px;margin-right:35%;"><i class="far fa-calendar-alt text-primary me-2"></i>   Date Created: <?php echo $row["created_at"];?></small>
                                             </div>
                                         </div>
@@ -99,7 +99,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center" style="margin-top:-37px;">
-                                                <a class="btn btn-primary" href="">Details</a>
+                                                <a class="btn btn-primary" href="./viewDetails.php?requestId=<?php echo $row["id"];?>">Details</a>
                                                 <small class="text-truncate" style="margin-top:-30px;margin-right:35%;"><i class="far fa-calendar-alt text-primary me-2"></i>   Date Created: <?php echo $row["created_at"];?></small>
                                             </div>
                                         </div>
@@ -127,7 +127,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center" style="margin-top:-37px;">
-                                                <a class="btn btn-primary" href="">Details</a>
+                                                <a class="btn btn-primary" href="./viewDetails.php?requestId=<?php echo $row["id"];?>">Details</a>
                                                 <small class="text-truncate" style="margin-top:-30px;margin-right:35%;"><i class="far fa-calendar-alt text-primary me-2"></i>   Date Created: <?php echo $row["created_at"];?></small>
                                             </div>
                                         </div>
