@@ -57,3 +57,15 @@ function emptyForm(){
     else
         return true;
 }
+
+function emptyQuoteForm(){
+    var empty = document.getElementById("quote-price");
+
+    if(empty.value == ""){
+            alert("Price is missing");
+            empty.focus();
+        return false;
+    }
+    else
+        return true;
+}
