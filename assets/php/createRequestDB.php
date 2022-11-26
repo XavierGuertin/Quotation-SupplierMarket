@@ -18,7 +18,7 @@ if(isset($_POST['add'])) {
     $status = "pending";
     $createdDate = date("Y-m-d");
 
-    $sql = "INSERT INTO heroku_8714cfa5818f328.requests (created_by, subject, description, groupAssigned, status, created_at, modified_at) VALUES ('$username','$subjectTitle','$description','$group','$status','$createdDate', '$createdDate')";
+    $sql = "INSERT INTO heroku_8714cfa5818f328.requests (created_by, subject, description, groupAssigned, status, created_at, modified_at, supplierAssigned) VALUES ('$username','$subjectTitle','$description','$group','$status','$createdDate', '$createdDate', '')";
     $result = mysqli_query($conn, $sql);
 
     if ($result) {
