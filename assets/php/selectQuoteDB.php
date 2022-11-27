@@ -18,6 +18,7 @@ if(isset($_POST['chooseQuote'])) {
     $statusC = "completed";
     $statusS = "supervisor";
     $statusAS = "approval";
+    $role = $_SESSION['role'];
 
     //verify that the quote id appears and go search the supplierName
     $sql= "SELECT * FROM heroku_8714cfa5818f328.quotations WHERE id = '$quoteId'";
@@ -27,7 +28,7 @@ if(isset($_POST['chooseQuote'])) {
     $quotePrice = $row["price"];
 
     //send quote to supervisor.
-    if ($quotePrice >= 5000){
+    if ($quotePrice >= 5000 && $role == "User"){
         $sql2 = "UPDATE heroku_8714cfa5818f328.requests set status = '$statusAS', supplierAssigned = '$supplierName', modified_at = '$createdDate' WHERE (id = '$requestId')";
         $result2 = mysqli_query($conn, $sql2);
 

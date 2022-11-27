@@ -144,7 +144,7 @@
             <?php
                     }
                 }
-            } elseif ($role == "User") {
+            } elseif ($role == "User" or $role == "Supervisor") {
                 if (mysqli_num_rows($result) == 0) {
                     echo '<a style="color:white">No quotes have been received yet.</a';
                 } elseif ($row["status"] == "completed") {
@@ -152,8 +152,29 @@
                     on the following date: ',$row["modified_at"],'</a><br><a style="color:white">The process is over, 
                     the supplier will contact you.</a>';
                 } elseif ($row["status"] == "approval") {
-                    echo '<a style="color:white">The quote from the following supplier: ',$row["supplierAssigned"],'
-                    has been sent to your supervisor.</a><br><a style="color:white">Waiting for the supervisor.</a>';
+                    if ($role == "User") {
+                        echo '<a style="color:white">The quote from the following supplier: ',$row["supplierAssigned"],'
+                        has been sent to your supervisor.</a><br><a style="color:white">Waiting for the supervisor.</a>';
+                    } else {
+                        $findId = $row["id"] ;
+                        $findSupplier = $row["supplierAssigned"];
+                        $sqlFindQuotePrice= "SELECT * FROM heroku_8714cfa5818f328.quotations WHERE requestId = '$findId' and supplierName = '$findSupplier'";
+                        $priceResult = $conn->query($sqlFindQuotePrice);
+                        $findRow = mysqli_fetch_assoc($priceResult);
+            ?>
+
+                        <a style="color:white">You have to approve or reject the following quote:</a><br>
+                        <a style="color:white">Name of the supplier: <?php echo $row["supplierAssigned"];?>.</a><br>
+                        <a style="color:white">The price of the quote is: <?php echo $findRow["price"];?>$.</a><br><br>
+                        
+                        <form action="./assets/php/supervisorApprovalDB.php?requestId=<?php echo $row["id"];?>" method="post">
+                        
+                                <input style="width:10%;" type ="submit" name="approve" value="Approve" class="btn btn-primary" style="border-color:black;"></input>
+                                <input style="width:10%;margin-left:2%;" type ="submit" name="reject" value="Reject" class="btn btn-primary" style="border-color:black;"></input>
+                            
+                        <form>
+            <?php
+                    }
                 } else {
             ?>
                     <a style="color:white">Select the quote that you want to accept:</a><br><br>
@@ -171,12 +192,12 @@
                         }
                     }
                     while($rows = mysqli_fetch_assoc($result)){
-                        if (($rows["price"] >= 5000) and ($counter2 >= 1)) {
+                        if ($rows["price"] >= 5000 and $counter2 >= 1 and $role == "User") {
             ?>
                             <input style="color:white;" type="radio" id="<?php echo $rows["id"];?>" name="quote" value="<?php echo $rows["id"];?>" disabled>
                             <label style="color:white;" for="quote">Price: <?php echo $rows["price"];?> $. Supplier's name: <?php echo $rows["supplierName"];?>. <span style="color:red;"> There is a quote with a price lower than 5000. Therefore this one is disabled.<span></label><br>
             <?php
-                        } elseif (($rows["price"] >= 5000) and ($counter >= 2)  and ($counter2 == 0)) {
+                        } elseif ($rows["price"] >= 5000 and $counter >= 2  and $counter2 == 0 and $role == "User") {
             ?>
                             <input style="color:white;" type="radio" id="<?php echo $rows["id"];?>" name="quote" value="<?php echo $rows["id"];?>">
                             <label style="color:white;" for="quote">Price: <?php echo $rows["price"];?> $. Supplier's name: <?php echo $rows["supplierName"];?>. <span style="color:red;"> Requires supervisor's approval.<span></label><br>
