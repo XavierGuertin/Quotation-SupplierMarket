@@ -20,8 +20,11 @@
     $sqlPending= "SELECT * FROM heroku_8714cfa5818f328.requests WHERE groupAssigned = '$group' and status = 'pending'";
     $pendingResults = $conn->query($sqlPending);
 
-    $sqlQuoted= "SELECT * FROM heroku_8714cfa5818f328.requests WHERE groupAssigned = '$group' and (status = 'quoted' or status = 'approval')";
+    $sqlQuoted= "SELECT * FROM heroku_8714cfa5818f328.requests WHERE groupAssigned = '$group' and status = 'quoted'";
     $quotedResults = $conn->query($sqlQuoted);
+
+    $sqlSupervisor= "SELECT * FROM heroku_8714cfa5818f328.requests WHERE groupAssigned = '$group' and status = 'approval'";
+    $supervisorResults = $conn->query($sqlSupervisor);
 
     $sqlCompleted= "SELECT * FROM heroku_8714cfa5818f328.requests WHERE groupAssigned = '$group' and status = 'completed'";
     $completedResults = $conn->query($sqlCompleted);
@@ -46,6 +49,11 @@
                         </li>
                         <li class="nav-item">
                             <a class="d-flex align-items-center text-start mx-3 me-0 pb-3" data-bs-toggle="pill" href="#tab-3">
+                                <h6 class="mt-n1 mb-0" style="color:white;">Waiting Supervisor's Answer</h6>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="d-flex align-items-center text-start mx-3 me-0 pb-3" data-bs-toggle="pill" href="#tab-4">
                                 <h6 class="mt-n1 mb-0" style="color:white;">Completed</h6>
                             </a>
                         </li>
@@ -108,6 +116,34 @@
                             ?>
                         </div>
                         <div id="tab-3" class="tab-pane fade show p-0">
+                            <?php
+                            if (mysqli_num_rows($supervisorResults) == 0) {
+                            ?>
+                                <a style="color:white"> NOTHING TO SHOW </a>
+                            <?php
+                            }
+                            else {
+                                while($row = mysqli_fetch_assoc($supervisorResults)){
+                            ?>
+                                    <div class="reqList p-4 mb-4">
+                                        <div class="row g-4">
+                                            <div class="col-sm-12 col-md-8 d-flex align-items-center" style="margin-top:-55px;">
+                                                <div class="text-start ps-4" style="margin-top:45px;">
+                                                    <h5 class="mb-3"><?php echo $row["subject"];?></h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center" style="margin-top:-37px;">
+                                                <a class="btn btn-primary" href="./viewDetails.php?requestId=<?php echo $row["id"];?>">Details</a>
+                                                <small class="text-truncate" style="margin-top:-30px;margin-right:35%;"><i class="far fa-calendar-alt text-primary me-2"></i>   Date Created: <?php echo $row["created_at"];?></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                            <?php
+                                }
+                            }
+                            ?>
+                        </div>
+                        <div id="tab-4" class="tab-pane fade show p-0">
                             <?php
                             if (mysqli_num_rows($completedResults) == 0) {
                             ?>
