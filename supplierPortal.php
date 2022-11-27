@@ -19,13 +19,13 @@
     $role = $_SESSION['role'];
     $group = $_SESSION['groups'];
 
-    $sqlPending= "SELECT * FROM heroku_8714cfa5818f328.requests WHERE status = 'pending'";
+    $sqlPending= "SELECT * FROM heroku_8714cfa5818f328.requests WHERE status = 'pending' or status = 'quoted' or status = 'approval'";
     $pendingResults = $conn->query($sqlPending);
 
-    $sqlQuoted= "SELECT * FROM heroku_8714cfa5818f328.requests WHERE status = 'approval' or status = 'quoted'";
+    $sqlQuoted= "SELECT * FROM heroku_8714cfa5818f328.quotations WHERE supplierName = '$group' and status = 'pending'";
     $quotedResults = $conn->query($sqlQuoted);
 
-    $sqlCompleted= "SELECT * FROM heroku_8714cfa5818f328.requests WHERE status = 'completed'";
+    $sqlCompleted= "SELECT * FROM heroku_8714cfa5818f328.quotations WHERE supplierName = '$group' and (status = 'approved' or status = 'rejected')";
     $completedResults = $conn->query($sqlCompleted);
 ?>
 
@@ -62,21 +62,26 @@
                             }
                             else {
                                 while($row = mysqli_fetch_assoc($pendingResults)){
+                                    $requestId = $row["id"];
+                                    $sqlQuote= "SELECT * FROM heroku_8714cfa5818f328.quotations WHERE requestId = '$requestId' and supplierName = '$group'";
+                                    $quote = $conn->query($sqlQuote);
+                                    if (mysqli_num_rows($quote) == 0) {
                             ?>
-                                    <div class="reqList p-4 mb-4">
-                                        <div class="row g-4">
-                                            <div class="col-sm-12 col-md-8 d-flex align-items-center" style="margin-top:-55px;">
-                                                <div class="text-start ps-4" style="margin-top:45px;">
-                                                    <h5 class="mb-3"><?php echo $row["subject"];?></h5>
+                                        <div class="reqList p-4 mb-4">
+                                            <div class="row g-4">
+                                                <div class="col-sm-12 col-md-8 d-flex align-items-center" style="margin-top:-55px;">
+                                                    <div class="text-start ps-4" style="margin-top:45px;">
+                                                        <h5 class="mb-3"><?php echo $row["subject"];?></h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center" style="margin-top:-37px;">
+                                                    <a class="btn btn-primary" href="./viewDetails.php?requestId=<?php echo $row["id"];?>">Details</a>
+                                                    <small class="text-truncate" style="margin-top:-30px;margin-right:35%;"><i class="far fa-calendar-alt text-primary me-2"></i>   Date Created: <?php echo $row["created_at"];?></small>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center" style="margin-top:-37px;">
-                                                <a class="btn btn-primary" href="./viewDetails.php?requestId=<?php echo $row["id"];?>">Details</a>
-                                                <small class="text-truncate" style="margin-top:-30px;margin-right:35%;"><i class="far fa-calendar-alt text-primary me-2"></i>   Date Created: <?php echo $row["created_at"];?></small>
-                                            </div>
                                         </div>
-                                    </div>
                             <?php
+                                    }
                                 }
                             }
                             ?>
@@ -89,7 +94,11 @@
                             <?php
                             }
                             else {
-                                while($row = mysqli_fetch_assoc($quotedResults)){
+                                while($rows = mysqli_fetch_assoc($quotedResults)){
+                                    $requestId = $rows["requestId"];
+                                    $sqlQuote= "SELECT * FROM heroku_8714cfa5818f328.requests WHERE id = '$requestId'";
+                                    $quote = $conn->query($sqlQuote);
+                                    $row = mysqli_fetch_assoc($quote);
                             ?>
                                     <div class="reqList p-4 mb-4">
                                         <div class="row g-4">
@@ -117,7 +126,11 @@
                             <?php
                             }
                             else {
-                                while($row = mysqli_fetch_assoc($completedResults)){
+                                while($rows = mysqli_fetch_assoc($completedResults)){
+                                    $requestId = $rows["requestId"];
+                                    $sqlQuote= "SELECT * FROM heroku_8714cfa5818f328.requests WHERE id = '$requestId'";
+                                    $quote = $conn->query($sqlQuote);
+                                    $row = mysqli_fetch_assoc($quote);
                             ?>
                                     <div class="reqList p-4 mb-4">
                                         <div class="row g-4">
@@ -126,7 +139,7 @@
                                                     <h5 class="mb-3"><?php echo $row["subject"];?></h5>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center" style="margin-top:-37px;">
+                                            <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-itms-md-end justify-content-center" style="margin-top:-37px;">
                                                 <a class="btn btn-primary" href="./viewDetails.php?requestId=<?php echo $row["id"];?>">Details</a>
                                                 <small class="text-truncate" style="margin-top:-30px;margin-right:35%;"><i class="far fa-calendar-alt text-primary me-2"></i>   Date Created: <?php echo $row["created_at"];?></small>
                                             </div>
@@ -141,12 +154,10 @@
                 </div>
             </div>
         </div>
-        <!-- Jobs End -->
     </div>
 
-
 <!---- Footer --->
-<div id="footer" style="display:none;"></div>
+<div id="footer" style="display:none;"></div>e
 <!--End Of Footer-->
 </body>
 
