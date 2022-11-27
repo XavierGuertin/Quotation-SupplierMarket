@@ -32,6 +32,9 @@
 
     $sqlNbOfQuote= "SELECT * FROM heroku_8714cfa5818f328.quotations WHERE requestId = '$id'";
     $result = $conn->query($sqlNbOfQuote);
+
+    $sqlNbOfQuote2= "SELECT * FROM heroku_8714cfa5818f328.quotations WHERE requestId = '$id'";
+    $result2 = $conn->query($sqlNbOfQuote2);
 ?>
 		
     <div>
@@ -103,6 +106,12 @@
                     <strong>Success! </strong>The quote has been selected successfully.<br>
                     <a href="./userPortal.php"><u>Click here</u><a> to go to the portal page</div>';
             }
+            if(isset($_GET['creation']) && $_GET['creation'] == 'successSupervisor')
+            {
+                echo '<div id="infoAdmin" class="alert alert-success alert-dismissible fade show" role="alert" style="width:40%;">
+                    <strong>Success! </strong>The quote has been successfully sent to the supervisor.<br>
+                    <a href="./userPortal.php"><u>Click here</u><a> to go to the portal page</div>';
+            }
 
             if ($role == "Supplier") {
                 if ($rowQuote == NULL) {
@@ -139,16 +148,35 @@
                     echo '<a style="color:white">You have accepted the quote of ',$row["supplierAssigned"],'<br>
                     on the following date: ',$row["modified_at"],'</a><br><a style="color:white">The process is over, 
                     the supplier will contact you.</a>';
+                } elseif ($row["status"] == "approval") {
+                    echo '<a style="color:white">The quote from the following supplier: ',$row["supplierAssigned"],'
+                    has been sent to your supervisor.</a><br><a style="color:white">Waiting for the supervisor.</a>';
                 } else {
             ?>
                     <a style="color:white">Select the quote that you want to accept:</a><br><br>
                     <form action="./assets/php/selectQuoteDB.php?requestId=<?php echo $row["id"];?>" method="post">
             <?php
+                    $counter = 0;
+                    $counter2 = 0;
+
+                    while($rowTemp = mysqli_fetch_assoc($result2)){
+                        if ($rowTemp["price"] >= 5000) {
+                            $counter ++;
+                        }
+                        if ($rowTemp["price"] < 5000) {
+                            $counter2 ++;
+                        }
+                    }
                     while($rows = mysqli_fetch_assoc($result)){
-                        if ($rows["price"] >= 5000) {
+                        if (($rows["price"] >= 5000) and ($counter2 >= 1)) {
             ?>
                             <input style="color:white;" type="radio" id="<?php echo $rows["id"];?>" name="quote" value="<?php echo $rows["id"];?>" disabled>
-                            <label style="color:white;" for="quote">Price: <?php echo $rows["price"];?> $. Supplier's name: <?php echo $rows["supplierName"];?>. <span style="color:red;"> Requires supervisor to approve.<span></label><br>
+                            <label style="color:white;" for="quote">Price: <?php echo $rows["price"];?> $. Supplier's name: <?php echo $rows["supplierName"];?>. <span style="color:red;"> There is a quote with a price lower than 5000. Therefore this one is disabled.<span></label><br>
+            <?php
+                        } elseif (($rows["price"] >= 5000) and ($counter >= 2)  and ($counter2 == 0)) {
+            ?>
+                            <input style="color:white;" type="radio" id="<?php echo $rows["id"];?>" name="quote" value="<?php echo $rows["id"];?>">
+                            <label style="color:white;" for="quote">Price: <?php echo $rows["price"];?> $. Supplier's name: <?php echo $rows["supplierName"];?>. <span style="color:red;"> Requires supervisor's approval.<span></label><br>
             <?php
                         } else {
             ?>
