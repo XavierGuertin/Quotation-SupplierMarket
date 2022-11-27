@@ -122,7 +122,7 @@
             <?php
                     } elseif ($row["status"] == "completed" && !($supplierName == $row["supplierAssigned"])){
             ?>
-                    <label style="color:white;margin-right:25.5%">The process is done. However the user accepted another supplier's quote.</label><br>
+                    <label style="color:white;margin-right:25.5%">The process is done. However the user did not accept your quote.</label><br>
             <?php
                     } elseif ($row["status"] == "quoted" || $row["status"] == "approval"){
             ?>
