@@ -92,6 +92,17 @@
                     <strong>Success! </strong>The request has been submitted succesfully<br>
                     <a href="./supplierPortal.php"><u>Click here</u><a> to go to the portal page</div>';
             }
+            if(isset($_GET['error']) && $_GET['error'] == 'errorUpdating') 
+            {
+                echo '<div id="infoAdmin" class="alert alert-danger alert-dismissible fade show" role="alert" style="width:40%;">
+                    <strong>Error! </strong>There was an error when choosing the quote. Try again.</div>';
+            }
+            if(isset($_GET['creation']) && $_GET['creation'] == 'successUpdating')
+            {
+                echo '<div id="infoAdmin" class="alert alert-success alert-dismissible fade show" role="alert" style="width:40%;">
+                    <strong>Success! </strong>The quote has been selected successfully.<br>
+                    <a href="./userPortal.php"><u>Click here</u><a> to go to the portal page</div>';
+            }
 
             if ($role == "Supplier") {
                 if ($rowQuote == NULL) {
@@ -126,32 +137,31 @@
                     echo '<a style="color:white">No quotes have been received yet.</a';
                 } elseif ($row["status"] == "completed") {
                     echo '<a style="color:white">You have accepted the quote of ',$row["supplierAssigned"],'<br>
-                    on the following date: ',$row["modified_at"],'</a>';
+                    on the following date: ',$row["modified_at"],'</a><br><a style="color:white">The process is over, 
+                    the supplier will contact you.</a>';
                 } else {
             ?>
                     <a style="color:white">Select the quote that you want to accept:</a><br><br>
                     <form action="./assets/php/selectQuoteDB.php?requestId=<?php echo $row["id"];?>" method="post">
             <?php
                     while($rows = mysqli_fetch_assoc($result)){
-                        if ($rows["price"] > 5000) {
+                        if ($rows["price"] >= 5000) {
             ?>
-                            <input style="color:white;" type="radio" id="<?php echo $rows["id"];?>" name="quote" value="<?php echo $rows["price"];?>" disabled>
+                            <input style="color:white;" type="radio" id="<?php echo $rows["id"];?>" name="quote" value="<?php echo $rows["id"];?>" disabled>
                             <label style="color:white;" for="quote">Price: <?php echo $rows["price"];?> $. Supplier's name: <?php echo $rows["supplierName"];?>. <span style="color:red;"> Requires supervisor to approve.<span></label><br>
             <?php
                         } else {
             ?>
-                            <input style="color:white;" type="radio" id="<?php echo $rows["id"];?>" name="quote" value="<?php echo $rows["price"];?>">
+                            <input style="color:white;" type="radio" id="<?php echo $rows["id"];?>" name="quote" value="<?php echo $rows["id"];?>">
                             <label style="color:white;" for="quote">Price: <?php echo $rows["price"];?> $. Supplier's name: <?php echo $rows["supplierName"];?>.</label><br>
             <?php            
                         }
                     }
             ?>  
                     <input type ="submit" name="chooseQuote" value="Submit" class="btn btn-primary" style="border-color:black;"></input>
+                    </form>
             <?php
-                }
-            ?>
-                </form>
-            <?php    
+                } 
             }
             ?>
         </div>
