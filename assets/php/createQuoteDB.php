@@ -18,12 +18,8 @@ if(isset($_POST['createQuote'])) {
 
     $sql = "INSERT INTO heroku_8714cfa5818f328.quotations (requestId, supplierAgentName, supplierName, price, date, status) VALUES ('$requestId','$supplierAgentName','$supplierName','$quotePrice','$createdDate', 'pending')";
     $result = mysqli_query($conn, $sql);
+    $status = "quoted";
 
-    if ($quotePrice >= 5000) {
-        $status = "approval";
-    } else {
-        $status = "quoted";
-    }
     $sql2 = "UPDATE heroku_8714cfa5818f328.requests set status = '$status', modified_at = '$createdDate' WHERE (id = '$requestId')";
     $result2 = mysqli_query($conn, $sql2);
 
