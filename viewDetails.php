@@ -30,7 +30,7 @@
         $rowQuote = mysqli_fetch_assoc($quote);
     }
 
-    $sqlNbOfQuote= "SELECT * FROM heroku_8714cfa5818f328.quotations WHERE requestId = '$id' and supplierName = '$supplierName'";
+    $sqlNbOfQuote= "SELECT * FROM heroku_8714cfa5818f328.quotations WHERE requestId = '$id'";
     $result = $conn->query($sqlNbOfQuote);
 ?>
 		
@@ -121,16 +121,34 @@
             <?php
                     }
                 }
-            } elseif ($role == "Supplier"){
+            } elseif ($role == "User") {
+                if (mysqli_num_rows($result) == 0) {
+                    echo '<a style="color:white">No quotes have been received yet.</a';
+                } elseif ($row["status"] == "completed") {
+                    echo '<a style="color:white">You have accepted the quote of ',$row["supplierAssigned"],'<br>
+                    on the following date: ',$row["modified_at"],'</a>';
+                } else {
             ?>
-                <a style="color:white">Select the quote that you want to accept.</a>
-                <form action="./assets/php/selectQuoteDB.php?requestId=<?php echo $row["id"];?>" method="post">
-            <?php   
-                    while($rows = mysqli_fetch_assoc($completedResults)){ 
+                    <a style="color:white">Select the quote that you want to accept:</a><br><br>
+                    <form action="./assets/php/selectQuoteDB.php?requestId=<?php echo $row["id"];?>" method="post">
+            <?php
+                    while($rows = mysqli_fetch_assoc($result)){
+                        if ($rows["price"] > 5000) {
             ?>
-
-            <?php    
+                            <input style="color:white;" type="radio" id="<?php echo $rows["id"];?>" name="quote" value="<?php echo $rows["price"];?>" disabled>
+                            <label style="color:white;" for="quote">Price: <?php echo $rows["price"];?> $. Supplier's name: <?php echo $rows["supplierName"];?>. <span style="color:red;"> Requires supervisor to approve.<span></label><br>
+            <?php
+                        } else {
+            ?>
+                            <input style="color:white;" type="radio" id="<?php echo $rows["id"];?>" name="quote" value="<?php echo $rows["price"];?>">
+                            <label style="color:white;" for="quote">Price: <?php echo $rows["price"];?> $. Supplier's name: <?php echo $rows["supplierName"];?>.</label><br>
+            <?php            
+                        }
                     }
+            ?>  
+                    <input type ="submit" name="chooseQuote" value="Submit" class="btn btn-primary" style="border-color:black;"></input>
+            <?php
+                }
             ?>
                 </form>
             <?php    
