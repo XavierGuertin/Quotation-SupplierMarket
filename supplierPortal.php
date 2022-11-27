@@ -19,7 +19,7 @@
     $role = $_SESSION['role'];
     $group = $_SESSION['groups'];
 
-    $sqlPending= "SELECT * FROM heroku_8714cfa5818f328.requests WHERE status = 'pending' or status = 'quoted' or status = 'approval'";
+    $sqlPending= "SELECT * FROM heroku_8714cfa5818f328.requests WHERE status = 'pending' or status = 'quoted'";
     $pendingResults = $conn->query($sqlPending);
 
     $sqlQuoted= "SELECT * FROM heroku_8714cfa5818f328.quotations WHERE supplierName = '$group' and status = 'pending'";
