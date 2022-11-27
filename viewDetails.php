@@ -16,11 +16,22 @@
 
     require_once './assets/php/dbh.php';
     $id = $_GET['requestId'];
+    $supplierName = $_SESSION['groups'];
 
     $sql= "SELECT * FROM heroku_8714cfa5818f328.requests WHERE id = '$id'";
     $request = $conn->query($sql);
+    $row = mysqli_fetch_assoc($request);
 
-    $row = mysqli_fetch_assoc($request)
+    $sqlQuote= "SELECT * FROM heroku_8714cfa5818f328.quotations WHERE requestId = '$id' and supplierName = '$supplierName'";
+    $quote = $conn->query($sqlQuote);
+    if (mysqli_num_rows($quote) == 0) {
+        $rowQuote = NULL;
+    } else {
+        $rowQuote = mysqli_fetch_assoc($quote);
+    }
+
+    $sqlNbOfQuote= "SELECT * FROM heroku_8714cfa5818f328.quotations WHERE requestId = '$id' and supplierName = '$supplierName'";
+    $result = $conn->query($sqlNbOfQuote);
 ?>
 		
     <div>
@@ -47,22 +58,83 @@
                     <input style="background-color: white;border-color: black;margin-left:2%;"value="&nbsp;&nbsp;<?php echo $row["created_at"];?>" disabled><br><br>
 
                     <label style="color:white;">Status:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                    <input style="background-color: white;border-color: black;margin-left:2%;"value="&nbsp;&nbsp;<?php echo $row["status"];?>" disabled><br><br>
+                    <input style="background-color: white;border-color: black;margin-left:2%;"value="&nbsp;&nbsp;<?php echo $row["status"];?>" disabled><br><br><br><br><br>
                 <?php
                     }
                 ?>
-        </div>
-        <div style = "text-align:right;padding-right:20%;margin-top:-16%">
-            <?php
-            if (mysqli_num_rows($request) > 0) {
-            ?>
-                <label style="color:white;margin-right:25.5%">Subject:&nbsp;&nbsp;&nbsp;&nbsp;</label><br>
-                <textarea style="background-color: white;border-color: black;margin-left:2%;" rows="1" cols="50" disabled>&nbsp;&nbsp;<?php echo $row["subject"];?></textarea><br><br>
 
-                <label style="color:white;margin-right:23%">Description:&nbsp;&nbsp;&nbsp;&nbsp;</label><br>
-                <textarea style="background-color: white;border-color: black;margin-left:2%;" rows="4" cols="50" disabled>&nbsp;&nbsp;<?php echo $row["description"];?></textarea>
-            <?php
+            <div style = "text-align:right;padding-right:20%;margin-top:-25%">
+                <?php
+                if (mysqli_num_rows($request) > 0) {
+                ?>
+                    <label style="color:white;margin-right:25.5%">Subject:&nbsp;&nbsp;&nbsp;&nbsp;</label><br>
+                    <textarea style="background-color: white;border-color: black;margin-left:2%;" rows="1" cols="50" disabled>&nbsp;&nbsp;<?php echo $row["subject"];?></textarea><br><br>
+
+                    <label style="color:white;margin-right:23%">Description:&nbsp;&nbsp;&nbsp;&nbsp;</label><br>
+                    <textarea style="background-color: white;border-color: black;margin-left:2%;" rows="4" cols="50" disabled>&nbsp;&nbsp;<?php echo $row["description"];?></textarea>
+                <?php
                 }
+                ?>
+            </div>
+        </div>
+
+        <div style = "text-align:left;padding-left:15%;margin-top:2%;">
+            <?php
+            
+            if(isset($_GET['error']) && $_GET['error'] == 'errorSending') 
+            {
+                echo '<div id="infoAdmin" class="alert alert-danger alert-dismissible fade show" role="alert" style="width:40%;">
+                    <strong>Error! </strong>There was an error creating the quote in the Database. Try again.</div>';
+            }
+            if(isset($_GET['creation']) && $_GET['creation'] == 'success')
+            {
+                echo '<div id="infoAdmin" class="alert alert-success alert-dismissible fade show" role="alert" style="width:40%;">
+                    <strong>Success! </strong>The request has been submitted succesfully<br>
+                    <a href="./supplierPortal.php"><u>Click here</u><a> to go to the portal page</div>';
+            }
+
+            if ($role == "Supplier") {
+                if ($rowQuote == NULL) {
+            ?>
+                <form action="./assets/php/createQuoteDB.php?requestId=<?php echo $row["id"];?>" method="post">
+                    <label style="color:white;margin-right:25.5%">Send a quote:&nbsp;&nbsp;&nbsp;&nbsp;</label><br>
+                    <input style="background-color: white;border-color: black;" type ="text" name="quotePrice" id="quote-price" placeholder="&nbsp;Quote Price"><br><br>
+                    <input onclick="emptyQuoteForm();" type ="submit" name="createQuote" value="Submit" class="btn btn-primary" style="border-color:black;"></input>
+                </form>
+            <?php
+                } else {
+                    if ($row["status"] == "completed" && $supplierName == $row["supplierAssigned"]) {
+            ?>
+                        <label style="color:white;margin-right:25.5%">Quote was accepted by user at this price:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <input style="background-color: white;border-color: black;;margin-left:-25%;width: 10%"value="&nbsp;&nbsp;<?php echo $rowQuote["price"];?> $" disabled><br><br>
+                        <a style="color:white">Please contact the user to arrange details.</a>
+            <?php
+                    } elseif ($row["status"] == "completed" && !($supplierName == $row["supplierAssigned"])){
+            ?>
+                    <label style="color:white;margin-right:25.5%">The process is done. However the user accepted another supplier's quote.</label><br>
+            <?php
+                    } elseif ($row["status"] == "quoted" || $row["status"] == "approval"){
+            ?>
+                        <label style="color:white;margin-right:25.5%">Quote sent:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <input style="background-color: white;border-color: black;margin-left:-25%;width: 10%"value="&nbsp;&nbsp;<?php echo $rowQuote["price"];?> $" disabled><br>
+                        <label style="color:white;margin-right:25.5%">Waiting for user's response.</label><br>
+            <?php
+                    }
+                }
+            } elseif ($role == "Supplier"){
+            ?>
+                <a style="color:white">Select the quote that you want to accept.</a>
+                <form action="./assets/php/selectQuoteDB.php?requestId=<?php echo $row["id"];?>" method="post">
+            <?php   
+                    while($rows = mysqli_fetch_assoc($completedResults)){ 
+            ?>
+
+            <?php    
+                    }
+            ?>
+                </form>
+            <?php    
+            }
             ?>
         </div>
 
