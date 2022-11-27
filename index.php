@@ -22,7 +22,7 @@ if (session_status() === PHP_SESSION_NONE)
                     echo '<button name="Portal" class="loginBtn" onclick="location.href=\'supplierPortal.php\'"> Portal</button>';
             }
             else {
-            echo '<div class="alert alert-secondary" role="alert" style="width:35%;margin:auto;margin-top:20px;font-size:small;">You are logged out.</div>
+            echo '<div class="alert alert-secondary" role="alert" style="width:15%;margin:auto;margin-top:20px;font-size:small;">You are logged out.</div>
             <button name="log in" class="loginBtn" onclick="location.href=\'login.php\'"> Log in</button>';
             }
             ?> 
