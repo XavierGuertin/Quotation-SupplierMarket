@@ -29,9 +29,12 @@
                 }
                 if(isset($_GET['creation']) && $_GET['creation'] == 'success')
                 {
+                    if($role=="Supervisor") $portalPath = "./supervisorPortal.php";
+                    if($role=="User") $portalPath = "./userPortal.php";
+
                     echo '<div id="infoAdmin" class="alert alert-success alert-dismissible fade show" role="alert" style="margin-left:375px;width:750px;">
                         <strong>Success! </strong>The request has been submitted succesfully<br>
-                        <a href="./userPortal.php"><u>Click here</u><a> to go to the portal page</div>';
+                        <a href="./',$portalPath,'"><u>Click here</u><a> to go to the portal page</div>';
                 }
                 ?>
 

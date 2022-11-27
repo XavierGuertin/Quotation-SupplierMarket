@@ -7,10 +7,11 @@
         exit();
     }
 
-    if ($role == "User" or $role == "Supervisor") {
+    if ($role == "User") {
         $portailUrl = "./userPortal.php";
-    }
-    else {
+    } elseif ($role == "Supervisor") {
+        $portailUrl = "./supervisorPortal.php";
+    } else {
         $portailUrl = "./supplierPortal.php";
     }
 
@@ -83,7 +84,9 @@
 
         <div style = "text-align:left;padding-left:15%;margin-top:2%;">
             <?php
-            
+            if($role=="Supervisor") $portalPath = "./supervisorPortal.php";
+            if($role=="User") $portalPath = "./userPortal.php";
+
             if(isset($_GET['error']) && $_GET['error'] == 'errorSending') 
             {
                 echo '<div id="infoAdmin" class="alert alert-danger alert-dismissible fade show" role="alert" style="width:40%;">
@@ -104,13 +107,13 @@
             {
                 echo '<div id="infoAdmin" class="alert alert-success alert-dismissible fade show" role="alert" style="width:40%;">
                     <strong>Success! </strong>The quote has been selected successfully.<br>
-                    <a href="./userPortal.php"><u>Click here</u><a> to go to the portal page</div>';
+                    <a href="',$portalPath,'"><u>Click here</u><a> to go to the portal page</div>';
             }
             if(isset($_GET['creation']) && $_GET['creation'] == 'successSupervisor')
             {
                 echo '<div id="infoAdmin" class="alert alert-success alert-dismissible fade show" role="alert" style="width:40%;">
                     <strong>Success! </strong>The quote has been successfully sent to the supervisor.<br>
-                    <a href="./userPortal.php"><u>Click here</u><a> to go to the portal page</div>';
+                    <a href="',$portalPath,'"><u>Click here</u><a> to go to the portal page</div>';
             }
 
             if ($role == "Supplier") {
