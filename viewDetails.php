@@ -143,7 +143,7 @@
                         <input style="background-color: white;border-color: black;;margin-left:-25%;width: 10%"value="&nbsp;&nbsp;<?php echo $rowQuote["price"];?> $" disabled><br><br>
                         <a style="color:white">Please contact the user to arrange details.</a>
             <?php
-                    } elseif ($row["status"] == "completed" && !($supplierName == $row["supplierAssigned"])){
+                    } elseif ($rowQuote["status"] == "rejected"){
             ?>
                     <label style="color:white;margin-right:25.5%">The process is done. However the user did not accept your quote.</label><br>
             <?php
