@@ -37,7 +37,7 @@ if(isset($_POST['chooseQuote'])) {
             exit();
         }
         else {
-            header("Location: ../../userRequestForm.php?requestId=".$requestId."&error=errorUpdating");
+            header("Location: ../../viewDetails.php?requestId=".$requestId."&error=errorUpdating");
             exit();
         }
 
@@ -68,7 +68,7 @@ if(isset($_POST['chooseQuote'])) {
             exit();
         }
         else {
-            header("Location: ../../userRequestForm.php?requestId=".$requestId."&error=errorUpdating");
+            header("Location: ../../viewDetails.php?requestId=".$requestId."&error=errorUpdating");
             exit();
         }
     }
