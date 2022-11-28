@@ -71,10 +71,10 @@
                 <?php
                 if (mysqli_num_rows($request) > 0) {
                 ?>
-                    <label style="color:white;margin-right:25.5%">Subject:&nbsp;&nbsp;&nbsp;&nbsp;</label><br>
+                    <label style="color:white;margin-right:30%">Subject:&nbsp;&nbsp;&nbsp;&nbsp;</label><br>
                     <textarea style="background-color: white;border-color: black;margin-left:2%;" rows="1" cols="50" disabled>&nbsp;&nbsp;<?php echo $row["subject"];?></textarea><br><br>
 
-                    <label style="color:white;margin-right:23%">Description:&nbsp;&nbsp;&nbsp;&nbsp;</label><br>
+                    <label style="color:white;margin-right:27.5%">Description:&nbsp;&nbsp;&nbsp;&nbsp;</label><br>
                     <textarea style="background-color: white;border-color: black;margin-left:2%;" rows="4" cols="50" disabled>&nbsp;&nbsp;<?php echo $row["description"];?></textarea>
                 <?php
                 }
@@ -196,6 +196,7 @@
             <?php
                     $counter = 0;
                     $counter2 = 0;
+                    $lowestPrice = 999999;
 
                     while($rowTemp = mysqli_fetch_assoc($result2)){
                         if ($rowTemp["price"] >= 5000) {
@@ -204,28 +205,31 @@
                         if ($rowTemp["price"] < 5000) {
                             $counter2 ++;
                         }
+                        if ($rowTemp["price"] < $lowestPrice) {
+                            $lowestPrice = $rowTemp["price"];
+                        }
                     }
                     while($rows = mysqli_fetch_assoc($result)){
-                        if ($rows["price"] >= 5000 and $counter2 >= 1 and $role == "User") {
+                        if ($rows["price"] >= 5000 and $counter == 1  and $counter2 == 0 and $role == "User") {
             ?>
                             <input style="color:white;" type="radio" id="<?php echo $rows["id"];?>" name="quote" value="<?php echo $rows["id"];?>" disabled>
-                            <label style="color:white;" for="quote">Price: <?php echo $rows["price"];?> $. Supplier's name: <?php echo $rows["supplierName"];?>. <span style="color:red;"> There is a quote with a price lower than 5000. Therefore this one is disabled.<span></label><br>
+                            <label style="color:white;" for="quote">Price: <?php echo $rows["price"];?>$. Supplier's name: <?php echo $rows["supplierName"];?>. <span style="color:red;"> Unable to choose the quote. You need at least one other quote before sending to supervisor.<span></label><br>
+
             <?php
-                        } elseif ($rows["price"] >= 5000 and $counter >= 2  and $counter2 == 0 and $role == "User") {
+                        } elseif ($rows["price"] == $lowestPrice and $rows["price"] < 5000) {
             ?>
                             <input style="color:white;" type="radio" id="<?php echo $rows["id"];?>" name="quote" value="<?php echo $rows["id"];?>">
-                            <label style="color:white;" for="quote">Price: <?php echo $rows["price"];?> $. Supplier's name: <?php echo $rows["supplierName"];?>. <span style="color:red;"> Requires supervisor's approval.<span></label><br>
+                            <label style="color:white;" for="quote">Price: <?php echo $rows["price"];?>$. Supplier's name: <?php echo $rows["supplierName"];?>.</label><br>
             <?php
-                        } elseif ($rows["price"] >= 5000 and $counter = 1  and $counter2 == 0 and $role == "User") {
+                        } elseif ($rows["price"] == $lowestPrice and $rows["price"] >= 5000 and $role == "User") {
             ?>
-                            <input style="color:white;" type="radio" id="<?php echo $rows["id"];?>" name="quote" value="<?php echo $rows["id"];?>" disabled>
-                            <label style="color:white;" for="quote">Price: <?php echo $rows["price"];?> $. Supplier's name: <?php echo $rows["supplierName"];?>. <span style="color:red;"> Unable to choose any quotes. You need at least one other quote before sending to supervisor.<span></label><br>
-
+                            <input style="color:white;" type="radio" id="<?php echo $rows["id"];?>" name="quote" value="<?php echo $rows["id"];?>">
+                            <label style="color:white;" for="quote">Price: <?php echo $rows["price"];?>$. Supplier's name: <?php echo $rows["supplierName"];?>. <span style="color:red;"> The quote will be sent to your supervisor.<span></label><br>
             <?php
                         } else {
             ?>
-                            <input style="color:white;" type="radio" id="<?php echo $rows["id"];?>" name="quote" value="<?php echo $rows["id"];?>">
-                            <label style="color:white;" for="quote">Price: <?php echo $rows["price"];?> $. Supplier's name: <?php echo $rows["supplierName"];?>.</label><br>
+                            <input style="color:white;" type="radio" id="<?php echo $rows["id"];?>" name="quote" value="<?php echo $rows["id"];?>" disabled>
+                            <label style="color:white;" for="quote">Price: <?php echo $rows["price"];?>$. Supplier's name: <?php echo $rows["supplierName"];?>. <span style="color:red;"> There is a quote with a lower price. Therefore, this one is disabled.<span></label><br>
             <?php            
                         }
                     }
