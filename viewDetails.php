@@ -216,6 +216,12 @@
                             <input style="color:white;" type="radio" id="<?php echo $rows["id"];?>" name="quote" value="<?php echo $rows["id"];?>">
                             <label style="color:white;" for="quote">Price: <?php echo $rows["price"];?> $. Supplier's name: <?php echo $rows["supplierName"];?>. <span style="color:red;"> Requires supervisor's approval.<span></label><br>
             <?php
+                        } elseif ($rows["price"] >= 5000 and $counter = 1  and $counter2 == 0 and $role == "User") {
+            ?>
+                            <input style="color:white;" type="radio" id="<?php echo $rows["id"];?>" name="quote" value="<?php echo $rows["id"];?>" disabled>
+                            <label style="color:white;" for="quote">Price: <?php echo $rows["price"];?> $. Supplier's name: <?php echo $rows["supplierName"];?>. <span style="color:red;"> Unable to choose any quotes. You need at least one other quote before sending to supervisor.<span></label><br>
+
+            <?php
                         } else {
             ?>
                             <input style="color:white;" type="radio" id="<?php echo $rows["id"];?>" name="quote" value="<?php echo $rows["id"];?>">
