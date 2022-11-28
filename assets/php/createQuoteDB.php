@@ -28,7 +28,7 @@ if(isset($_POST['createQuote'])) {
         exit();
     }
     else {
-        header("Location: ../../userRequestForm.php?requestId=".$requestId."&error=errorSending");
+        header("Location: ../../viewDetails.php?requestId=".$requestId."&error=errorSending");
         exit();
     }
 }
