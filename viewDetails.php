@@ -111,9 +111,20 @@
             }
             if(isset($_GET['creation']) && $_GET['creation'] == 'successSupervisor')
             {
-                echo '<div id="infoAdmin" class="alert alert-success alert-dismissible fade show" role="alert" style="width:40%;">
+                echo '<div id="infoAdmin" class="alert alert-success alert-dismissible fade show" role="alert" style="width:42%;">
                     <strong>Success! </strong>The quote has been successfully sent to the supervisor.<br>
                     <a href="',$portalPath,'"><u>Click here</u><a> to go to the portal page</div>';
+            }
+            if(isset($_GET['creation']) && $_GET['creation'] == 'successReject')
+            {
+                echo '<div id="infoAdmin" class="alert alert-success alert-dismissible fade show" role="alert" style="width:40%;">
+                    <strong>Success! </strong>The request has been succesfully rejected<br>
+                    <a href="',$portalPath,'"><u>Click here</u><a> to go to the portal page</div>';
+            }
+            if(isset($_GET['error']) && $_GET['error'] == 'errorReject') 
+            {
+                echo '<div id="infoAdmin" class="alert alert-danger alert-dismissible fade show" role="alert" style="width:40%;">
+                    <strong>Error! </strong>There was an error rejecting the quote. Try again.</div>';
             }
 
             if ($role == "Supplier") {
@@ -148,9 +159,12 @@
                 if (mysqli_num_rows($result) == 0) {
                     echo '<a style="color:white">No quotes have been received yet.</a';
                 } elseif ($row["status"] == "completed") {
-                    echo '<a style="color:white">You have accepted the quote of ',$row["supplierAssigned"],'<br>
+                    echo '<a style="color:white">The quote of: ',$row["supplierAssigned"],' has been accepted 
                     on the following date: ',$row["modified_at"],'</a><br><a style="color:white">The process is over, 
                     the supplier will contact you.</a>';
+                } elseif ($row["status"] == "rejected") {
+                    echo '<a style="color:white">The quotes have been rejected
+                    on the following date: ',$row["modified_at"],'</a><br><a style="color:white">The process is over.</a>';
                 } elseif ($row["status"] == "approval") {
                     if ($role == "User") {
                         echo '<a style="color:white">The quote from the following supplier: ',$row["supplierAssigned"],'
@@ -167,7 +181,7 @@
                         <a style="color:white">Name of the supplier: <?php echo $row["supplierAssigned"];?>.</a><br>
                         <a style="color:white">The price of the quote is: <?php echo $findRow["price"];?>$.</a><br><br>
                         
-                        <form action="./assets/php/supervisorApprovalDB.php?requestId=<?php echo $row["id"];?>" method="post">
+                        <form action="./assets/php/supervisorApprovalDB.php?requestId=<?php echo $row["id"];?>&quoteId=<?php echo $findRow["id"];?>" method="post">
                         
                                 <input style="width:10%;" type ="submit" name="approve" value="Approve" class="btn btn-primary" style="border-color:black;"></input>
                                 <input style="width:10%;margin-left:2%;" type ="submit" name="reject" value="Reject" class="btn btn-primary" style="border-color:black;"></input>
