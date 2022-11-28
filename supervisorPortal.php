@@ -26,7 +26,7 @@
     $sqlSupervisor= "SELECT * FROM heroku_8714cfa5818f328.requests WHERE groupAssigned = '$group' and status = 'approval'";
     $supervisorResults = $conn->query($sqlSupervisor);
 
-    $sqlCompleted= "SELECT * FROM heroku_8714cfa5818f328.requests WHERE groupAssigned = '$group' and status = 'completed'";
+    $sqlCompleted= "SELECT * FROM heroku_8714cfa5818f328.requests WHERE groupAssigned = '$group' and (status = 'completed' or status = 'rejected')";
     $completedResults = $conn->query($sqlCompleted);
 ?>
 
