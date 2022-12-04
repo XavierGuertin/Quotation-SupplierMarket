@@ -1,11 +1,11 @@
 <footer>
     <div class="footer">
         
-        <a onclick="hideFooter()" title="Hide Footer"><i class='far fa-arrow-alt-circle-up' style='font-size:30px;color:white'></i></a>
+        <a onclick="hideFooter()" title="Hide Footer"><i class='far fa-arrow-alt-circle-up' style='font-size:30px;color:white;cursor:pointer'></i></a>
 
         <div class="team">
+            <h1>Our team</h1>
             <ul>
-                <h1>Our team</h1>
                 <li>
                     <a target="_blank" href="#">Xavier Guertin</a>
                 </li>

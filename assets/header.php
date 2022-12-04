@@ -51,7 +51,37 @@ if (session_status() === PHP_SESSION_NONE)
             <div class="leftmenu">
                 <a style="text-decoration:none;" href="./index.php"><h4><i class='fa-brands fa-think-peaks fa-beat' style="--fa-animation-duration: 2s;"></i>  Quotation & Supplier Market </h4></a>
             </div>
-
+            <div class="rightmenuBurger">
+                <ul>
+                    <a href="javascript:void(0);" class="icon" onclick="menuButton()">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                    <div id="myLinks" style="display: none;">
+                    <a href="./index.php"><li id="firstlist">Home</li></a>
+                    <?php
+                    if(isset($_SESSION['userName'])) {
+                        $role = $_SESSION['role'];
+                        if($role=="User") {
+                            echo '<a href="./userRequestForm.php"><li>Request Form</li></a>';
+                            echo '<a href="./userPortal.php"><li>Portal</li></a>';
+                        }
+                        if($role=="Supervisor") {
+                            echo '<a href="./userRequestForm.php"><li>Request Form</li></a>';
+                            echo '<a href="./supervisorPortal.php"><li>Portal</li></a>';
+                        }
+                        if($role=="Supplier")
+                            echo '<a href="./supplierPortal.php"><li>Portal</li></a>';
+                    }
+                    ?>
+                    <a onclick="showFooter()"><li>About Us</li></a>
+                    <?php
+                    if(isset($_SESSION['userName'])) {
+                        echo '<form id="logOutHeader" action="./assets/php/logoutPhp.php" method="post"><a onclick="logOutHeader.submit();">log out</a></form>';
+                    }
+                    ?>
+                    </div>
+                </ul>
+            </div>
             <div class="rightmenu">
                 <ul>
                     <a href="./index.php"><li id="firstlist">Home</li></a>
@@ -77,6 +107,5 @@ if (session_status() === PHP_SESSION_NONE)
                     }
                     ?>
                 </ul>
-            </div>
-
+                </div>
         </div>
