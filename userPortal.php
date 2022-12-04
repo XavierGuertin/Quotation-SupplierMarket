@@ -87,7 +87,7 @@
                             }
                             ?>
                         </div>
-                        <div id="tab-2" class="tab-pane fade show p-0">
+                        <div id="tab-2" class="tab-pane fade show p-0" style="color:black;">
                             <?php
                             if (mysqli_num_rows($quotedResults) == 0) {
                             ?>
@@ -179,7 +179,7 @@
 
 
 <!---- Footer --->
-<div id="footer" style="display:none;"></div>
+<div id="footer"></div>
 <!--End Of Footer-->
 </body>
 

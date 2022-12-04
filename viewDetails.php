@@ -247,7 +247,7 @@
 </div>
 
 <!---- Footer --->
-<div id="footer" style="display:none;"></div>
+<div id="footer"></div>
 <!--End Of Footer-->
 </body>
 

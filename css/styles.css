@@ -16,11 +16,16 @@ Variables
 }
 body {
   background: rgb(19, 19, 19);
+  overflow-x: hidden;
 }
 
 *{
   margin: 0px;
   padding: 0px;
+}
+
+.alert{
+  z-index: 0;
 }
 .bgimage{
   background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url("../img/BG.jpg");
@@ -37,14 +42,14 @@ body {
 }
 
 .leftmenu{
+    display: flex;
+    align-items: center;
   width: 40%;
   height: 100%;
-  line-height: 100Px;
   float: left;
 }
 
 .leftmenu h4{
-  padding-top: 55px;
   padding-left: 10%;
   font-weight: bold;
   color: white;
@@ -54,18 +59,20 @@ body {
 }
 
 .rightmenu{
+  position: absolute;
+  right: 0px;
   width: 60%;
-  height: 100%;
+  height: 15%;
   line-height: 100Px;
-  float: right;
 }
 .rightmenu ul{
+  display: flex;
+  align-items: center;
   height:100%;
   float: right;
   margin-right: 10%;
 }
 .rightmenu ul li{
-  display: inline-block;
   font-family: 'montserrat', sans-serif ;
   list-style: none;
   font-size: 100%;
@@ -75,14 +82,72 @@ body {
   margin-left: 40px;
   text-transform: uppercase;
   cursor: pointer;
-  margin-top: 30px;
 }
 .rightmenu ul li:hover{
   color: #00ccff;
 }
-#firstlist{
- color: #00ccff; 
+
+.rightmenuBurger{
+  visibility: hidden;
+  right: 0;
+  width: 60%;
+  height: 100%;
+  line-height: 100Px;
+  float: right;
+  z-index: 1;
 }
+    
+.rightmenuBurger ul{
+  float: right;
+  margin-right: 0%;
+  height:100%;
+}
+.rightmenuBurger ul li, .rightmenuBurger a, .rightmenuBurger form{
+  font-family: 'montserrat', sans-serif ;
+  list-style: none;
+  color: white;
+  font-weight: bold;
+  line-height: 100px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+    
+.rightmenuBurger ul #myLinks{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+    
+  background-color: black;
+  width: 100%;
+  transform: translateX(0%);
+  transition: transform 0.5s ease-in;
+  z-index: 1;
+}
+    
+.rightmenuBurger a {
+  color: white;
+  
+  padding:0px 20px;
+  text-decoration: none;
+  font-size: 17px;
+  display: block;
+}
+
+.rightmenuBurger a.icon {
+  height: 100%;
+  background: black;
+  display: flex;
+  align-items: center;
+  position: relative; 
+  right: 0;
+  top: 0;
+}
+
+.rightmenuBurger a:hover, .rightmenuBurger li:hover, .rightmenuBurger form:hover {
+  background-color: #ddd;
+  color: black;
+}
+
 .text{
   width: 100%;
   margin-top:185px ;
@@ -138,7 +203,7 @@ Responsive Rules
 */
 
 /* Mobile */
-@media (max-width: 480px){
+@media screen and (max-width: 480px){
 .bgimage {
   background-size: 2500px;
 }
@@ -152,46 +217,11 @@ Responsive Rules
   visibility: hidden;
 }
 
-.rightmenu ul li{
-  font-size: 14px;
-  margin-top: 0px;
-  margin-left: 12px;
-}
-
-/* Burger Menu */
-.rightmenu {
-  overflow: hidden;
-  background-color: #333;
-  position: relative;
-}
-
-.rightmenu #myLinks {
-  display: none;
-}
-
-.rightmenu a {
-  color: white;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-  display: block;
-}
-
-.rightmenu a.icon {
-  background: black;
-  display: block;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-
-.rightmenu a:hover {
-  background-color: #ddd;
-  color: black;
+.rightmenuBurger{
+  visibility: visible;
 }
 
 .active {
-  background-color: #04AA6D;
   color: white;
 }
 
@@ -206,6 +236,10 @@ Responsive Rules
   padding-bottom: 15px;
 }
 
+h1{
+  font-size: 25px;
+}
+
 .text div {
   width: 50%;
   font-size: 14px;
@@ -213,17 +247,16 @@ Responsive Rules
 
 }
 /* Tablets */
-@media (min-width: 481px) and (max-width: 767px){
+@media screen and (min-width: 481px) and (max-width: 767px){
 .bgimage {
-  background-size: 100px;
+  background-size: 1500px;
+  height: 600px;
 }
+
 
 .leftmenu h4{
   padding: 35px 20px;
   font-size: 25px;
-}
-.rightmenu{
-  visibility: hidden;
 }
 
 .rightmenu ul li{
@@ -231,7 +264,15 @@ Responsive Rules
   margin-top: 10px;
   margin-left: 20px;
 }
-  
+
+.rightmenu{
+  visibility: hidden;
+}
+
+.rightmenuBurger{
+  visibility: visible;
+}
+
 .text h1{
     line-height: 60px
  }
@@ -242,22 +283,28 @@ Responsive Rules
 
 }
 /* Tablets Portrait */
-@media (min-width: 768px) and (max-width: 1024px){
+@media screen and (min-width: 768px) and (max-width: 1024px){
 .bgimage {
   background-size: 2500px;
 }
+
 .leftmenu h4{
   padding: 25px 20px;
   font-size: 25px;
 }
+
+.rightmenu{
+  visibility: hidden;
+}
+
 .rightmenu ul li{
   font-size: 20px;
   margin-top: 10px;
   margin-left: 20px;
 }
 
-.rightmenu{
-  visibility: hidden;
+.rightmenuBurger{
+  visibility: visible;
 }
 
 .text div {
@@ -266,7 +313,7 @@ Responsive Rules
 }
 }
 /* Laptops and Desktops */
-@media  (min-width: 1025px) and (max-width: 1281px){
+@media screen and (min-width: 1025px) and (max-width: 1281px){
 .bgimage {
   background-size: 2000px;
 }
@@ -280,6 +327,10 @@ Responsive Rules
   visibility: hidden;
 }
 
+.rightmenuBurger{
+  visibility: visible;
+}
+
 .rightmenu ul li{
   font-size: 20px;
   margin-top: 10px;
@@ -287,7 +338,7 @@ Responsive Rules
 }
 }
 /* Large Screen */
-@media (min-width: 1281px) and (max-width: 2159){
+@media screen and (min-width: 1281px) and (max-width: 2159){
 .bgimage {
   background-size: 2500px;
 }
@@ -303,7 +354,7 @@ Responsive Rules
 }
 }
 
-@media (min-width: 2160px){
+@media screen and (min-width: 2160px){
   .bgimage {
     background-size: 3500px;
   }
@@ -348,30 +399,6 @@ footer{
   left: 10%;
 }
 
-@media (max-width: 1023px){
-  .footer{
-    flex-direction: column;
-    padding-left: 20%;
-  }
-
-  .footer .far{
-    position: sticky;
-    /* position: fixed; */
-    /* bottom: 40px; */
-    
-    padding-top: 10px;
-    left: 5%;
-
-  }
-
-  .team h1,
-  .jobs h1,
-  .customer h1{
-    padding-bottom: 1rem;
-} 
-}
-
-
 p{
   margin: 0px;
 }
@@ -395,6 +422,40 @@ p{
 }
 .team a:hover{
   text-decoration: underline;
+}
+
+@media screen and (max-width: 1023px){
+  .footer{
+    flex-direction: column;
+    padding-left: 20%;
+    font-size: .1rem;
+  }
+
+  .footer .far{
+    position: sticky;
+    /* position: fixed; */
+    /* bottom: 40px; */
+    
+    /* padding-top: 10px; */
+    left: 5%;
+
+  }
+
+  .team h1,
+  .jobs h1,
+  .customer h1{
+    padding-bottom: .1rem;
+    font-size: 2rem;
+} 
+
+  .team li,
+  .team a,
+  .jobs li,
+  .jobs p,
+  .customer li,
+  .customer p{
+    font-size: 1rem;
+  }
 }
 
 /*
@@ -467,7 +528,7 @@ section {
   transition: var(--transition);
 }
 
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
 
   .login-container {
     padding-left: 66px;
