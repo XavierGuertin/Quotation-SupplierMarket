@@ -51,10 +51,11 @@ if (session_status() === PHP_SESSION_NONE)
             <div class="leftmenu">
                 <a style="text-decoration:none;" href="./index.php"><h4><i class='fa-brands fa-think-peaks fa-beat' style="--fa-animation-duration: 2s;"></i>  Quotation & Supplier Market </h4></a>
             </div>
-
+            
             <div class="rightmenu">
                 <ul>
                     <a href="./index.php"><li id="firstlist">Home</li></a>
+                    <div id="myLinks">
                     <?php
                     if(isset($_SESSION['userName'])) {
                         $role = $_SESSION['role'];
@@ -76,7 +77,22 @@ if (session_status() === PHP_SESSION_NONE)
                         echo '<form id="logOutHeader" style="display: inline-block;" action="./assets/php/logoutPhp.php" method="post"><li onclick="logOutHeader.submit();">log out</li></form>';
                     }
                     ?>
+                    </div>
+                    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                        <i class="fa fa-bars"></i>
+                    </a>
                 </ul>
             </div>
 
         </div>
+
+        <script>
+            function myFunction() {
+                var x = document.getElementById("myLinks");
+                if (x.style.display === "block") {
+                    x.style.display = "none";
+                } else {
+                    x.style.display = "block";
+                }
+            }
+        </script>

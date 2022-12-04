@@ -65,7 +65,7 @@
     </div>
 
     <!---- Footer --->
-    <div id="footer" style="display:none;"></div>
+    <div id="footer" style="display: none"></div>
     <!--End Of Footer-->
 </body>
 
