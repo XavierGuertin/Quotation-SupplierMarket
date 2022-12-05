@@ -55,7 +55,7 @@ body {
   color: white;
   font-size: 150%;
   font-family: 'montserrat', sans-serif;
-  
+  white-space: nowrap
 }
 
 .rightmenu{
