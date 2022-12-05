@@ -57,28 +57,28 @@ if (session_status() === PHP_SESSION_NONE)
                         <i class="fa fa-bars"></i>
                     </a>
                     <div id="myLinks" style="display: none;">
-                    <a href="./index.php"><li id="firstlist">Home</li></a>
-                    <?php
-                    if(isset($_SESSION['userName'])) {
-                        $role = $_SESSION['role'];
-                        if($role=="User") {
-                            echo '<a href="./userRequestForm.php"><li>Request Form</li></a>';
-                            echo '<a href="./userPortal.php"><li>Portal</li></a>';
+                        <a href="./index.php"><li id="firstlist">Home</li></a>
+                        <?php
+                        if(isset($_SESSION['userName'])) {
+                            $role = $_SESSION['role'];
+                            if($role=="User") {
+                                echo '<a href="./userRequestForm.php"><li>Request Form</li></a>';
+                                echo '<a href="./userPortal.php"><li>Portal</li></a>';
+                            }
+                            if($role=="Supervisor") {
+                                echo '<a href="./userRequestForm.php"><li>Request Form</li></a>';
+                                echo '<a href="./supervisorPortal.php"><li>Portal</li></a>';
+                            }
+                            if($role=="Supplier")
+                                echo '<a href="./supplierPortal.php"><li>Portal</li></a>';
                         }
-                        if($role=="Supervisor") {
-                            echo '<a href="./userRequestForm.php"><li>Request Form</li></a>';
-                            echo '<a href="./supervisorPortal.php"><li>Portal</li></a>';
+                        ?>
+                        <a onclick="showFooter()"><li>About Us</li></a>
+                        <?php
+                        if(isset($_SESSION['userName'])) {
+                            echo '<form id="logOutHeader2" action="./assets/php/logoutPhp.php" method="post"><a onclick="logOutHeader2.submit();">log out</a></form>';
                         }
-                        if($role=="Supplier")
-                            echo '<a href="./supplierPortal.php"><li>Portal</li></a>';
-                    }
-                    ?>
-                    <a onclick="showFooter()"><li>About Us</li></a>
-                    <?php
-                    if(isset($_SESSION['userName'])) {
-                        echo '<form id="logOutHeader" action="./assets/php/logoutPhp.php" method="post"><a onclick="logOutHeader.submit();">log out</a></form>';
-                    }
-                    ?>
+                        ?>
                     </div>
                 </ul>
             </div>
@@ -107,5 +107,5 @@ if (session_status() === PHP_SESSION_NONE)
                     }
                     ?>
                 </ul>
-                </div>
+            </div>
         </div>

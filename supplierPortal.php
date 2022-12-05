@@ -157,7 +157,7 @@
     </div>
 
 <!---- Footer --->
-<div id="footer"></div>e
+<div id="footer" style="display: none"></div>
 <!--End Of Footer-->
 </body>
 

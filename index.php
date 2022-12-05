@@ -34,7 +34,7 @@ if (session_status() === PHP_SESSION_NONE)
 
 
 <!---- Footer --->
-<div id="footer"></div>
+<div id="footer" style="display: none"></div>
 <!--End Of Footer-->
 </body>
 
